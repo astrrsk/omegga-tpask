@@ -36,7 +36,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
 
         const diff = Date.now() - CD;
         if (diff <= 60000) {
-          this.omegga.whisper(speaker, `You are on cooldown. <color="ff00ff">${Math.round(diff / 1000)}</> seconds remain.`);
+          this.omegga.whisper(speaker, `You are on cooldown. <color="ff00ff">${60 - Math.round(diff / 1000)}</> seconds remain.`);
           return;
         }
         delete this.cooldowns[speaker]; // Remove cooldown
