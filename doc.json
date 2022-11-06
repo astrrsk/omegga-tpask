@@ -1,0 +1,30 @@
+{
+  "name": "tpask",
+  "description": "Teleport Ask. Allows for sending teleport requests.",
+  "author": "astrsk",
+  "config": {},
+  "commands": [
+    {
+      "name": "tpa",
+      "description": "sends a teleport request to a player",
+      "example": "/tpa PLAYER",
+      "args" : [{
+        "name": "player",
+        "description": "player to send request to",
+        "required": true
+      }]
+    },
+    {
+      "name": "tpaccept",
+      "description": "accepts your currently active teleport request",
+      "example": "/tpaccept",
+      "args": []
+    },
+    {
+      "name": "tpdeny",
+      "description": "denies your currently active teleport request",
+      "example": "/tpdeny",
+      "args": []
+    }
+  ]
+}
