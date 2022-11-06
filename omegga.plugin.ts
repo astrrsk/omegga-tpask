@@ -24,7 +24,7 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     // No direct name found, try searching for alias
     let closestMatch = { index: 99, name: null };
     for (const p of players) {
-      const myIndex = p.name.toLowerCase().indexOf(plr);
+      const myIndex = p.name.toLowerCase().indexOf(lower);
       if (myIndex != -1) {
         if (myIndex < closestMatch.index) {
           closestMatch.index = myIndex;
