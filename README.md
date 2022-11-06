@@ -15,4 +15,4 @@ A typed safe plugin for [omegga](https://github.com/brickadia-community/omegga).
 
 ## Install
 
-`omegga install gh:astrsk/tpask`
+`omegga install gh:astrrsk/tpask`
