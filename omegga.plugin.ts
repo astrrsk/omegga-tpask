@@ -14,28 +14,6 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
     this.store = store;
   }
 
-  private checkForPlayer(plr: string): string {
-    const players = this.omegga.getPlayers().sort();
-    const lower = plr.toLowerCase();
-    for (const p of players) {
-      if (p.name.toLowerCase() == lower) { return p.name; }
-    }
-    
-    // No direct name found, try searching for alias
-    let closestMatch = { index: 99, name: null };
-    for (const p of players) {
-      const myIndex = p.name.toLowerCase().indexOf(lower);
-      if (myIndex != -1) {
-        if (myIndex < closestMatch.index) {
-          closestMatch.index = myIndex;
-          closestMatch.name = p.name;
-        }
-      }
-    }
-
-    return closestMatch.name; // Should be null if no proper match is found
-  }
-
   private cooldowns = {};
   private activeRequests = [];
 
@@ -57,11 +35,12 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
       }
 
 
-      const to = this.checkForPlayer(other.toLowerCase());
-      if (!to) {
+      const plr = this.omegga.findPlayerByName(other);
+      if (!plr) {
         console.log(`Unable to find player ${other}.`);
         return;
       }
+      const to = plr.name;
 
       if (this.activeRequests[to]) { // false probably wont happen
         this.omegga.whisper(speaker, `${to} has an active TP request, please wait for them to accept or deny it.`);
